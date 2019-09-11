@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <update handle="editor"/>
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+        <css src="Boostsales_Manufacturer::css/styles.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+
+            <block class="Boostsales\Manufacturer\Block\Adminhtml\Manufacturer\Edit" name="manufacturer_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Boostsales\Manufacturer\Block\Adminhtml\Manufacturer\Edit\Tabs" name="manufacturer_edit_tabs">
+                <block class="Boostsales\Manufacturer\Block\Adminhtml\Manufacturer\Edit\Tab\Main" name="boostsales_manufacturer_edit_tab_main"/>
+                <block class="Boostsales\Manufacturer\Block\Adminhtml\Manufacturer\Edit\Tab\Logo" name="boostsales_manufacturer_edit_tab_logo"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">boostsales_manufacturer_edit_tab_main</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">logo_section</argument>
+                    <argument name="block" xsi:type="string">boostsales_manufacturer_edit_tab_logo</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

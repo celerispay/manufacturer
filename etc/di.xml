@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="ManufacturerGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Boostsales\Manufacturer\Model\ResourceModel\Manufacturer\Collection</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="manufacturer_manufacturer_listing_data_source" xsi:type="string">Boostsales\Manufacturer\Model\ResourceModel\Manufacturer\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Boostsales\Manufacturer\Model\ResourceModel\Manufacturer\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">boostsales_manufacturer</argument>
+            <argument name="eventPrefix" xsi:type="string">boostsales_manufacturer_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">boostsales_manufacturer_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Boostsales\Manufacturer\Model\ResourceModel\Manufacturer</argument>
+        </arguments>
+    </virtualType>
+</config>

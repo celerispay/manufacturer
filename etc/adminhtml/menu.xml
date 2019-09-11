@@ -1,0 +1,8 @@
+<?xml version='1.0'?>
+
+<config xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='urn:magento:module:Magento_Backend:etc/menu.xsd'>
+    <menu>
+        <add id='Boostsales_Manufacturer::manufacturer' title='Boostsales' module='Boostsales_Manufacturer' sortOrder='70' resource='Boostsales_Manufacturer::Manufacturer' />
+        <add id='Boostsales_Manufacturer::Manufacturer' title='Manufacturer List' module='Boostsales_Manufacturer' sortOrder='1' action='manufacturer/manufacturer/index' parent='Boostsales_Manufacturer::manufacturer' resource='Boostsales_Manufacturer::Manufacturer_Manufacturer'/>
+    </menu>
+</config>
