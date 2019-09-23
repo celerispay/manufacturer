@@ -36,11 +36,13 @@ class Thumbnail extends \Magento\Ui\Component\Listing\Columns\Column
     {
         if (isset($dataSource['data']['items'])) {
             $fieldName = $this->getData('name');
-            $placeholder = $this->_assetRepo->getUrl("Boostsales_Manufacturer::images/placeholder_thumbnail.jpg");
+
             foreach ($dataSource['data']['items'] as &$item) {
                 $url = '';
-                if ($item[$fieldName] != '') {
+                if ($item[$fieldName] != '' && $item['manufacturer_logo']) {
                     $url = $this->imageModel->getBaseTmpMediaUrl() . '/' . $item[$fieldName];
+                } else {
+                    $url = $this->_assetRepo->getUrl("Boostsales_Manufacturer::images/placeholder_thumbnail.jpg");
                 }
                 $item[$fieldName . '_src'] = $url;
                 $item[$fieldName . '_alt'] = $this->getAlt($item);
