@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Boostsales_Manufacturer::css/manufacturer.css" />
+    </head>
+    <body>
+        <referenceContainer name="product.info.main">
+            <block class="Boostsales\Manufacturer\Block\Manufacturer" name="manufacturer" template="Boostsales_Manufacturer::product/view/review.phtml" before="-"/>
+        </referenceContainer>
+    </body>
+</page>

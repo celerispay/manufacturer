@@ -1,0 +1,19 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \Boostsales\Manufacturer\Block\Manufacturer*/?>
+<?php
+$manufacturer = $block->getImagePath();
+if ($manufacturer) {
+    ?>
+<div id="product-manufacturer" class="col-md-6 col-sm-6 col-xs-4">
+<img class="manufacture-logo" style="width:60px;height:60px;float:right;" src="<?php echo $manufacturer ?>">
+</div>
+<?php }
+?>
