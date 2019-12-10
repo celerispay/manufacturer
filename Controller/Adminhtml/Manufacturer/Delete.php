@@ -9,9 +9,17 @@
 
 namespace Boostsales\Manufacturer\Controller\Adminhtml\Manufacturer;
 
+use Magento\Backend\App\Action\Context;
+use Magento\Store\Model\StoreManagerInterface;
+
 class Delete extends \Magento\Backend\App\Action
 {
-
+    protected $storeManager;
+    public function __construct(Context $context, StoreManagerInterface $storeManager)
+    {
+        $this->storeManager = $storeManager;
+        parent::__construct($context);
+    }
     public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();
@@ -19,7 +27,8 @@ class Delete extends \Magento\Backend\App\Action
         if ($id) {
             try {
                 $model = $this->_objectManager->create('Boostsales\Manufacturer\Model\Manufacturer');
-                $model->load($id);
+                $img_path = $model->load($id)->getData();
+                unlink($this->storeManager->getStore()->getBaseMediaDir() . '/boostsales/manufacturer/' . $img_path['manufacturer_logo']);
                 $model->delete();
                 $this->messageManager->addSuccess(__('You deleted the Manufacturer.'));
                 return $resultRedirect->setPath('*/*/');
