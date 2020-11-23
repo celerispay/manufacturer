@@ -6,15 +6,13 @@
     "license": "proprietary",
 
     "require": {
-        "magento/product-community-edition": "2.3.2"
+        "magento/product-community-edition": "^2.4.0"
     },
-    
-    "authors": [
-        {
-            "name": "Newgen payments",
-            "email": "info@newgenpayments.com"
-        }
-    ],
+
+    "authors": [{
+        "name": "Newgen payments",
+        "email": "info@newgenpayments.com"
+    }],
 
     "autoload": {
         "files": [
