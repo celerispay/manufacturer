@@ -11,10 +11,10 @@
 <?php
 $manufacturer = $block->getImagePath();
 if ($manufacturer) {
-    $manufName = $block->getManufacturer();
+    $mfglink = $block->getManufacturerLink();
     ?>
 <div id="product-manufacturer" class="col-md-6 col-sm-6 col-xs-4">
-<a href="<?php echo $block->getManufacturerProductsLink(strtolower($manufName))?>"><img class="manufacture-logo" style="width:60px;height:60px;float:right;" src="<?php echo $manufacturer ?>"></a>
+    <a href="<?php echo $mfglink ?>"><img class="manufacture-logo" style="width:60px;height:60px;float:right;" src="<?php echo $manufacturer ?>"></a>
 </div>
 <?php }
 ?>

@@ -84,4 +84,11 @@ class Manufacturer extends \Magento\Framework\Model\AbstractModel implements Ide
     {
         return $this->setData('updated_at', $updated_at);
     }
+
+    public function getAllLogoUrl($mfg_id,$colId)
+    {
+        $logoUrl = $this->_getResource()->getManufacturerUrlById($mfg_id,$colId);
+        return $logoUrl;
+        // return $this->getData('mfg_url_antratek_be');
+    }
 }

@@ -84,4 +84,16 @@ class Manufacturer extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         return $this->getConnection()->fetchOne($select);
     }
 
+    public function getManufacturerUrlById($mfg_id,$colid)
+    {
+        $select = $this->getConnection()->select()->from(
+            ['mfg' => $this->getMainTable(),['mfg_url_antratek_be','mfg_url_antratek_com','mfg_url_antratek_nl','mfg_url_antratek_de','mfg_url_ict_antratek_com','mfg_url_ict_antratek_nl']]
+        )->where(
+            'mfg.title = ?',
+            $mfg_id
+        );
+        $select->reset(\Magento\Framework\DB\Select::COLUMNS)->columns(['mfg.mfg_url_'.$colid]);
+        return $this->getConnection()->fetchAll($select);
+    }
+
 }

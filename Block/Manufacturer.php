@@ -12,34 +12,48 @@ class Manufacturer extends \Magento\Framework\View\Element\Template
 
     protected $urlBuilder;
 
+    protected $_model;
+
     public function __construct(
         \Magento\Catalog\Model\ResourceModel\Product\Collection $productRepo,
         \Magento\Catalog\Block\Product\AbstractProduct $productClass,
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\UrlInterface $urlBuilder,
+        \Boostsales\Manufacturer\Model\Manufacturer $model,
         array $data = []
     ) {
         $this->_productRepo = $productRepo;
         $this->_productClass = $productClass;
         $this->_storeManager = $storeManager;
         $this->_urlBuilder = $urlBuilder;
+        $this->_model = $model;
         parent::__construct($context, $data);
     }
 
-    public function getManufacturer()
+    public function getManufacturerName()
     {
-        $product = $this->_productClass->getProduct();
-        $manufacturerName = $product->getAttributeText('manufacturer');
+        $manufacturerName = $this->_productClass->getProduct()->getAttributeText('manufacturer');
         return $manufacturerName;
     }
 
-    public function getManufacturerProductsLink($queryParams)
+    public function getManufacturerId(){
+        $attribute = $this->_productClass->getProduct()->getResource()->getAttribute('manufacturer');
+        if ($attribute->usesSource()) {
+            $option_id = $attribute->getSource()->getOptionId($this->getManufacturerName());
+        }
+        return $option_id;
+    }
+    
+    public function getManufacturerLink()
+    {   
+        $mfgurls = $this->_model->getAllLogoUrl($this->getManufacturerId(),$this->getStoreCode());
+        return $mfgurls[0]["mfg_url_".$this->getStoreCode()];
+    }
+
+    private function getStoreCode()
     {
-        $query = [
-            'q' => $queryParams,
-        ];
-        return $this->_urlBuilder->getUrl('catalogsearch/result/index', ['_query' => $query]);
+        return $this->getStoreInfo()->getCode();
     }
 
     private function getStoreInfo()
@@ -50,7 +64,7 @@ class Manufacturer extends \Magento\Framework\View\Element\Template
 
     public function getImagePath()
     {
-        $manufacturerName = $this->getManufacturer();
+        $manufacturerName = $this->getManufacturerName();
         $mediaDir = $this->getStoreInfo()->getBaseMediaDir();
         $imageDir = $mediaDir . '/boostsales/manufacturer/' . $manufacturerName . '-logo' . '.png';
         if (file_exists($imageDir)) {
