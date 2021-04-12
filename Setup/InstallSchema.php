@@ -19,12 +19,12 @@ class InstallSchema implements InstallSchemaInterface
     public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
 
-        $newsTableName = $setup->getTable('boostsales_manufacturer');
+        $manufacturerTable = $setup->getTable('boostsales_manufacturer');
 
-        if ($setup->getConnection()->isTableExists($newsTableName) != true) {
+        if ($setup->getConnection()->isTableExists($manufacturerTable) != true) {
 
-            $newsTable = $setup->getConnection()
-                ->newTable($newsTableName)
+            $manufacturer = $setup->getConnection()
+                ->newTable($manufacturerTable)
                 ->addColumn(
                     'manufacturer_id',
                     \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
@@ -74,13 +74,9 @@ class InstallSchema implements InstallSchemaInterface
                     ['nullable' => false],
                     'Updated At'
                 )
-                ->addIndex(
-                    $setup->getIdxName('boostsales_manufacturer', ['title']),
-                    ['title']
-                )
                 ->setComment("Manufacturer Table");
-
-            $setup->getConnection()->createTable($newsTable);
+                $setup->getConnection()->createTable($manufacturer);
         }
     }
 }
+

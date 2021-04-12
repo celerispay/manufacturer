@@ -13,15 +13,19 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
 {
     protected $attribute;
 
+    protected $store;
+
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Eav\Model\Config $attribute,
+        \Magento\Store\Model\System\Store $store,
         array $data = []
     ) {
         parent::__construct($context, $registry, $formFactory, $data);
         $this->attribute = $attribute;
+        $this->store = $store;
     }
 
     protected function _prepareForm()
@@ -42,12 +46,16 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         $manufacturer = $this->attribute->getAttribute('catalog_product', 'manufacturer');
         $allOptions = $manufacturer->getSource()->getAllOptions(true, true);
 
-        $fieldset->addField('title', 'select', array(
-            'label' => __('Manufacturer Name'),
-            'name' => 'title',
-            'values' => $allOptions,
-            'required' => true,
-        ));
+        $fieldset->addField(
+            'title', 
+            'select', 
+            array(
+                'label' => __('Manufacturer Name'),
+                'name' => 'title',
+                'values' => $allOptions,
+                'required' => true,
+            )
+        );
 
         $fieldset->addField(
             'identifier',

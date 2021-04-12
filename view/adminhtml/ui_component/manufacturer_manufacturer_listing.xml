@@ -165,7 +165,7 @@
                     </validation>
                     <editorType>text</editorType>
                 </editor>
-                <label translate="true">identifier</label>
+                <label translate="true">Identifier</label>
             </settings>
         </column>
         <column name="manufacturer_logo" class="Boostsales\Manufacturer\Ui\Component\Listing\Column\Thumbnail">

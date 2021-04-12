@@ -66,7 +66,6 @@ class Save extends \Magento\Backend\App\Action
                 $data['manufacturer_logo'] = $name;
             } else {
                 if (isset($_FILES['manufacturer_logo']['delete']) && $_FILES['manufacturer_logo']['delete'] == 1) {
-                    var_dump('delete image');die();
                     $data['manufacturer_logo'] = '';
                 } else {
                     unset($data['manufacturer_logo']);
