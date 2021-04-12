@@ -28,7 +28,11 @@ class Delete extends \Magento\Backend\App\Action
             try {
                 $model = $this->_objectManager->create('Boostsales\Manufacturer\Model\Manufacturer');
                 $img_path = $model->load($id)->getData();
-                unlink($this->storeManager->getStore()->getBaseMediaDir() . '/boostsales/manufacturer/' . $img_path['manufacturer_logo']);
+                if(!empty($img_path['manufacturer_logo'])){
+                    if(file_exists($img_path['manufacturer_logo'])){
+                        unlink($this->storeManager->getStore()->getBaseMediaDir() . '/boostsales/manufacturer/' . $img_path['manufacturer_logo']);
+                    }
+                }
                 $model->delete();
                 $this->messageManager->addSuccess(__('You deleted the Manufacturer.'));
                 return $resultRedirect->setPath('*/*/');

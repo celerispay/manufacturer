@@ -34,7 +34,9 @@ class MassDelete extends \Magento\Backend\App\Action
         $collection = $this->filter->getCollection($this->collectionFactory->create());
         $logo_data = $collection->getData();
         foreach ($logo_data as $key) {
-            unlink($this->storeManager->getStore()->getBaseMediaDir() . '/boostsales/manufacturer/' . $key['manufacturer_logo']);
+            if(!empty($key['manufacturer_logo'])){
+                unlink($this->storeManager->getStore()->getBaseMediaDir() . '/boostsales/manufacturer/' . $key['manufacturer_logo']);
+            }
         }
         $collectionSize = $collection->getSize();
 
